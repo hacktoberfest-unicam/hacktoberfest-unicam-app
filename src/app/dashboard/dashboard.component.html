@@ -1,0 +1,19 @@
+<div class="latest-submissions">
+    <h3>Latest Submissions</h3>
+    <table>
+        <tr>
+            <td><b>PR link</b></td>
+            <td><b>Username</b></td>
+            <td><b>Problem</b></td>
+            <td><b>Bonus Points</b></td>
+            <td><b>Bonus Comment</b></td>
+        </tr>
+        <tr *ngFor="let pr of pullRequests">
+            <td><a href="https://www.google.com">pr_link</a></td>
+            <td>{{pr.nickname}}</td>
+            <td>{{pr.problemId}}</td>
+            <td>{{pr.bonusPoints}}</td>
+            <td>{{pr.bonusComment}}</td>
+        </tr>
+    </table>
+</div>
