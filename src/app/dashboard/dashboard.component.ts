@@ -11,17 +11,20 @@ export class DashboardComponent implements OnInit {
     {
       id:1,
       problemId:'test',
-      nickname:'dmitry-mingazov'
+      nickname:'dmitry-mingazov',
+      mergeTime: new Date()
     },
     {
       id:2,
       problemId:'test2',
-      nickname:'dmitry-mingazov'
+      nickname:'dmitry-mingazov',
+      mergeTime: new Date()
     },
     {
       id:3,
       problemId:'test3',
-      nickname:'dmitry-mingazov'
+      nickname:'dmitry-mingazov',
+      mergeTime: new Date()
     }
   ]
 

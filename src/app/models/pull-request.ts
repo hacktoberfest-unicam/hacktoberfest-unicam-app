@@ -5,6 +5,7 @@ export interface PullRequest {
     problemId: string;
     // Github username of the PR submitter
     nickname: string;
+    mergeTime: Date;
     bonusPoints?: number;
     bonusComment?: string;
 }

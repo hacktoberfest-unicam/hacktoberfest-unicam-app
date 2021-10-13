@@ -7,6 +7,7 @@
             <td><b>Problem</b></td>
             <td><b>Bonus Points</b></td>
             <td><b>Bonus Comment</b></td>
+            <td><b>Merge Time</b></td>
         </tr>
         <tr *ngFor="let pr of pullRequests">
             <td><a href="https://www.google.com">pr_link</a></td>
@@ -14,6 +15,7 @@
             <td>{{pr.problemId}}</td>
             <td>{{pr.bonusPoints}}</td>
             <td>{{pr.bonusComment}}</td>
+            <td>{{pr.mergeTime}}</td>
         </tr>
     </table>
 </div>
