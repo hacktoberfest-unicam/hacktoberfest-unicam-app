@@ -1,9 +1,5 @@
-export interface User extends UserDTO{
+export interface User {
     // Github username
-    closedPRs?: number[];
-}
-
-export interface UserDTO {
     nickname: string;
     name: string;
     surname: string;
