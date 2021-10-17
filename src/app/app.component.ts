@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'hacktoberfest-app';
+
+  links = ['user','problem','pr', 'dashboard'];
+  activeLink = 'user';
+
+  isSidenavOpened = false;
+
+  public changeSidenav(): void {
+    this.isSidenavOpened = !this.isSidenavOpened;
+  }
 }
