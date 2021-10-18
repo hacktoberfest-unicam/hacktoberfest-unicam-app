@@ -1,6 +1,0 @@
-{
-    "/api": {
-        "target": "https://hacktoberfest-unicam.herokuapp.com",
-        "secure": false
-    }
-}
