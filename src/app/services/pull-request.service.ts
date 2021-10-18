@@ -26,4 +26,20 @@ export class PullRequestService {
   public getPullRequestsMOCK(): Observable<PullRequest[]> {
     return of(PR_MOCK);
   }
+
+  public updatePullRequest(pr: PullRequest): Observable<PullRequest> {
+    return this.http.put<PullRequest>(`${this.url}/${pr.id}`, pr);
+  }
+
+  public updatePullRequestMOCK(pr: PullRequest): Observable<PullRequest> {
+    return of(pr);
+  }
+
+  public deletePullRequest(pr: PullRequest): Observable<PullRequest>{
+    return this.http.delete<PullRequest>(`${this.url}/${pr.id}`);
+  }
+
+  public deletePullRequestMOCK(pr: PullRequest): Observable<PullRequest>{
+    return of(pr);
+  }
 }

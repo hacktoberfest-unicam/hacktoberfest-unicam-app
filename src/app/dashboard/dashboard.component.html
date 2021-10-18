@@ -2,7 +2,7 @@
     <h3>
         Latest Submissions
     </h3>
-    <table mat-table [dataSource]="pullRequests" class="mat-elevation-z8">
+    <table mat-table #prTable [dataSource]="pullRequests" class="mat-elevation-z8">
 
         <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef>Id</th>
