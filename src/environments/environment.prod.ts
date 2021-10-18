@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'Insert URL here'
+  debug: false,
+  baseUrl: 'http://49.12.237.253/api'
 };

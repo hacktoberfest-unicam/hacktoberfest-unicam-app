@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  debug: true,
-  baseUrl: 'http://localhost:8080/api'
+  debug: false,
+  baseUrl: 'http://49.12.237.253:8080/api'
 };
 
 /*
