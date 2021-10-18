@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -9,6 +9,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProblemComponent } from './problem/problem.component';
 import { UserComponent } from './user/user.component';
 import { PullRequestComponent } from './pull-request/pull-request.component';
+
+import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -36,10 +38,32 @@ import { MatButtonModule } from '@angular/material/button';
     MatListModule,
     MatIconModule,
     MatButtonModule,
+    AuthModule.forRoot({
+      domain: 'hacktoberfest-app.eu.auth0.com',
+      clientId: 'BvnV0B2YScNVmw1imk30pMRcprUilCon',
+
+      audience: 'hacktoberfest-api',
+
+      // scope: 'read:current_user',
+
+      httpInterceptor: {
+        allowedList: [
+          {
+            uri: 'http://localhost:8080/*',
+            tokenOptions: {
+              audience: 'hacktoberfest-api',
+              // scope: 'read:current_user'
+            }
+          }
+        ]
+      }
+    }),
 
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
