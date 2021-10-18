@@ -10,7 +10,7 @@ import { AuthService } from '@auth0/auth0-angular';
 export class AppComponent {
   title = 'hacktoberfest-app';
 
-  links = ['user','problem','pr', 'dashboard'];
+  links = ['user','problem','pull-request', 'dashboard'];
   activeLink = 'user';
 
   isSidenavOpened = false;
