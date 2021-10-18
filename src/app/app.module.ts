@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { ReactiveFormsModule } from '@angular/forms';
       httpInterceptor: {
         allowedList: [
           {
-            uri: 'http://localhost:8080/*',
+            uri: `${environment.baseUrl}/*`,
             tokenOptions: {
               audience: 'hacktoberfest-api',
               // scope: 'read:current_user'
