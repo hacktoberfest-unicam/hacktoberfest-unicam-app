@@ -23,6 +23,14 @@ export class UserService {
     return of(USER_MOCK);
   }
 
+  public createUser(user: User): Observable<User> {
+    return this.http.post<User>(this.url, user);
+  }
+
+  public createUserMOCK(user: User): Observable<User> {
+    return of(user);
+  }
+
   public updateUser(user: User): Observable<User> {
     return this.http.put<User>(`${this.url}/${user.nickname}`, user);
   }

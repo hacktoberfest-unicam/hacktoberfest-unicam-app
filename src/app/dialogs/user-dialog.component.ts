@@ -10,9 +10,9 @@ import { Command } from './command.enum';
   styleUrls: ['./dialog.scss']
 })
 export class UserDialogComponent implements OnInit {
-  public nicknameControl = new FormControl(this.data.user.nickname);
-  public nameControl = new FormControl(this.data.user.name);
-  public surnameControl = new FormControl(this.data.user.surname);
+  public nicknameControl = new FormControl();
+  public nameControl = new FormControl();
+  public surnameControl = new FormControl();
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -20,6 +20,11 @@ export class UserDialogComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if (this.data.user) {
+      this.nicknameControl.setValue(this.data.user.nickname);
+      this.nameControl.setValue(this.data.user.name);
+      this.surnameControl.setValue(this.data.user.surname);
+    }
   }
 
   updateUser() {

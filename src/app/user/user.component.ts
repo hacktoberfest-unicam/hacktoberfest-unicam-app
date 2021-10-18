@@ -29,6 +29,27 @@ export class UserComponent implements OnInit {
     });
   }
 
+  createUser() {
+    this.dialog.open(UserDialogComponent, {
+      data: {
+        mode: 'new',
+        user: null
+      }
+    }).afterClosed().subscribe(dialog => {
+      if(!dialog) {
+        return;
+      }
+      if (dialog.command == Command.CREATE) {
+        let obsCreate$ = environment.debug ? this.userService.createUserMOCK(dialog.user) : this.userService.createUser(dialog.user);
+        obsCreate$.subscribe(val => {
+          console.log(dialog.user);
+          this.users.push(dialog.user);
+          this.userTable.renderRows();
+        });
+      }
+    });
+  }
+
   editUser(nickname: string): void {
     // let tmp = this.dialog.open()
     this.dialog.open(UserDialogComponent, {
