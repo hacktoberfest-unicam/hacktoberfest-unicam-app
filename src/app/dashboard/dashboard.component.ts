@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
   public problems: Problem[] = [];
   public users: User[] = [];
 
+  public displayedColumns = ['id', 'problemId', 'nickname', 'mergeTime', 'bonusPoints', 'bonusComment','actions'];
+
   constructor(private pullRequestService: PullRequestService) { }
 
   ngOnInit(): void {
@@ -22,6 +24,10 @@ export class DashboardComponent implements OnInit {
     pr$.subscribe(prs => {
       this.pullRequests = prs;
     });
+  }
+
+  public editPullRequest(pullRequestId: number): void {
+
   }
 
 }

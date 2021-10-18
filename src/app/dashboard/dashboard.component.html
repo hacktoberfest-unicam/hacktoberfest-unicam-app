@@ -1,24 +1,45 @@
 <div class="latest-submissions">
-    <h3>Latest Submissions</h3>
-    <table>
-        <tr>
-            <td><b>PR link</b></td>
-            <td><b>Username</b></td>
-            <td><b>Problem</b></td>
-            <td><b>Bonus Points</b></td>
-            <td><b>Bonus Comment</b></td>
-            <td><b>Merge Time</b></td>
-        </tr>
-        <tr *ngFor="let pr of pullRequests">
-            <td><a href="https://www.google.com">pr_link</a></td>
-            <td>{{pr.nickname}}</td>
-            <td>{{pr.problemId}}</td>
-            <td>{{pr.bonusPoints}}</td>
-            <td>{{pr.bonusComment}}</td>
-            <td>{{pr.mergeTime}}</td>
-        </tr>
+    <h3>
+        Latest Submissions
+    </h3>
+    <table mat-table [dataSource]="pullRequests" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="problemId">
+            <th mat-header-cell *matHeaderCellDef>Problem Id</th>
+            <td mat-cell *matCellDef="let element"> {{element.problemId}} </td>
+        </ng-container>
+        <ng-container matColumnDef="nickname">
+            <th mat-header-cell *matHeaderCellDef>Username</th>
+            <td mat-cell *matCellDef="let element"> {{element.nickname}} </td>
+        </ng-container>
+        <ng-container matColumnDef="mergeTime">
+            <th mat-header-cell *matHeaderCellDef>Merge Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.mergeTime}} </td>
+        </ng-container>
+        <ng-container matColumnDef="bonusPoints">
+            <th mat-header-cell *matHeaderCellDef>Bonus Points</th>
+            <td mat-cell *matCellDef="let element"> {{element.bonusPoints}} </td>
+        </ng-container>
+        <ng-container matColumnDef="bonusComment">
+            <th mat-header-cell *matHeaderCellDef>Comment</th>
+            <td mat-cell *matCellDef="let element"> {{element.bonusComment}} </td>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="editPullRequest(element.id)" color="primary">
+                    <mat-icon>edit</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
     </table>
-</div>
-<div class="users">
-    <h3>Users</h3>
 </div>
