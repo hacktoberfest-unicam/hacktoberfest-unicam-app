@@ -2,6 +2,7 @@ import { Component, Inject } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { PullRequest } from "../models/pull-request";
+import { Command } from "./command.enum";
 
 @Component({
     selector: 'edit-pull-request-dialog',
@@ -29,7 +30,7 @@ export class EditPullRequestDialogComponent {
 
     deletePr() {
         this.dialogRef.close({
-            command: 'delete',
+            command: Command.DELETE,
             pr: this.data
         });
     }
@@ -44,7 +45,7 @@ export class EditPullRequestDialogComponent {
             bonusComment: this.bonusCommentControl.value,
         };
         this.dialogRef.close({
-            command: 'update',
+            command: Command.UPDATE,
             pr
         });
     }

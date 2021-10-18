@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
+import { Command } from '../dialogs/command.enum';
 import { EditPullRequestDialogComponent } from '../dialogs/edit-pull-request-dialog.component';
 import { Problem } from '../models/problem';
 import { PullRequest } from '../models/pull-request';
@@ -43,23 +44,25 @@ export class DashboardComponent implements OnInit {
       if (!value) {
         return;
       }
-      if (value.command) {
-        if (value.command == 'delete') {
-          let pr$ = environment.debug ? this.pullRequestService.deletePullRequestMOCK(value.pr) : this.pullRequestService.deletePullRequest(value.pr);
-          pr$.subscribe(pr => {
-            let index = this.pullRequests.findIndex(el => el.id === value.pr.id);
-            this.pullRequests.splice(index,1);
-          });
-        } else if (value.command == 'update') {
-          let pr$ = environment.debug ? this.pullRequestService.updatePullRequestMOCK(value.pr) : this.pullRequestService.updatePullRequest(value.pr);
-          pr$.subscribe(pr => {
+      switch(value.command) {
+        case Command.UPDATE:
+          let obsUpdate$ = environment.debug ? this.pullRequestService.updatePullRequestMOCK(value.pr) : this.pullRequestService.updatePullRequest(value.pr);
+          obsUpdate$.subscribe(pr => {
             let index = this.pullRequests.findIndex(el => el.id === pr.id);
             this.pullRequests.splice(index,1);
             this.pullRequests.push(pr);
           });
-        }
-        this.prTable.renderRows();
+          break;
+        case Command.DELETE:
+          let obsDelete$ = environment.debug ? this.pullRequestService.deletePullRequestMOCK(value.pr) : this.pullRequestService.deletePullRequest(value.pr);
+          obsDelete$.subscribe(pr => {
+            let index = this.pullRequests.findIndex(el => el.id === value.pr.id);
+            this.pullRequests.splice(index,1);
+          });
+          break;
+        default:
       }
+      this.prTable.renderRows();
     });
   }
 
