@@ -1,45 +1,5 @@
+
 <div class="table-area">
-    <h3>
-        Latest Submissions
-    </h3>
-    <table mat-table #prTable [dataSource]="pullRequests" class="mat-elevation-z8">
-
-        <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>Id</th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-        </ng-container>
-        <ng-container matColumnDef="problemId">
-            <th mat-header-cell *matHeaderCellDef>Problem Id</th>
-            <td mat-cell *matCellDef="let element"> {{element.problemId}} </td>
-        </ng-container>
-        <ng-container matColumnDef="nickname">
-            <th mat-header-cell *matHeaderCellDef>Username</th>
-            <td mat-cell *matCellDef="let element"> {{element.nickname}} </td>
-        </ng-container>
-        <ng-container matColumnDef="mergeTime">
-            <th mat-header-cell *matHeaderCellDef>Merge Time</th>
-            <td mat-cell *matCellDef="let element"> {{element.mergeTime}} </td>
-        </ng-container>
-        <ng-container matColumnDef="bonusPoints">
-            <th mat-header-cell *matHeaderCellDef>Bonus Points</th>
-            <td mat-cell *matCellDef="let element"> {{element.bonusPoints}} </td>
-        </ng-container>
-        <ng-container matColumnDef="bonusComment">
-            <th mat-header-cell *matHeaderCellDef>Comment</th>
-            <td mat-cell *matCellDef="let element"> {{element.bonusComment}} </td>
-        </ng-container>
-        <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element">
-                <button mat-icon-button (click)="editPullRequest(element.id)" color="primary">
-                    <mat-icon>edit</mat-icon>
-                </button>
-            </td>
-        </ng-container>
-
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    </table>
+    <h3>Latest Submissions</h3>
+    <app-pull-request></app-pull-request>
 </div>
