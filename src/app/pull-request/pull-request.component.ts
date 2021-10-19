@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
 import { Command } from '../dialogs/command.enum';
-import { EditPullRequestDialogComponent } from '../dialogs/edit-pull-request-dialog.component';
+import { PullRequestDialogComponent } from '../dialogs/pull-request-dialog.component';
 import { Problem } from '../models/problem';
 import { PullRequest } from '../models/pull-request';
 import { User } from '../models/user';
@@ -37,9 +37,34 @@ export class PullRequestComponent implements OnInit {
     });
   }
 
+  public createPullRequest(): void {
+    this.dialog.open(PullRequestDialogComponent, {
+      data: {
+        mode: 'create'
+      }
+    }).afterClosed().subscribe(dialog => {
+      if(!dialog) {
+        return;
+      }
+      switch(dialog.command) {
+        case Command.CREATE:
+          let obsCreate$ = environment.debug ? this.pullRequestService.createPullRequestMOCK(dialog.pr) : this.pullRequestService.createPullRequest(dialog.pr);
+          obsCreate$.subscribe(_ => {
+            this.pullRequests.push(dialog.pr);
+            this.prTable.renderRows();
+          });
+          break;
+        default:
+      }
+    });
+  }
+
   public editPullRequest(pullRequestId: number): void {
-    let tmp = this.dialog.open(EditPullRequestDialogComponent, {
-      data: this.pullRequests.find(pr => pullRequestId === pr.id)
+    this.dialog.open(PullRequestDialogComponent, {
+      data: {
+        pr : this.pullRequests.find(pr => pullRequestId === pr.id),
+        mode: 'edit'
+      }
     }).afterClosed().subscribe(value => {
       if (!value) {
         return;
@@ -51,6 +76,7 @@ export class PullRequestComponent implements OnInit {
             let index = this.pullRequests.findIndex(el => el.id === pr.id);
             this.pullRequests.splice(index,1);
             this.pullRequests.push(pr);
+            this.prTable.renderRows();
           });
           break;
         case Command.DELETE:
@@ -58,11 +84,11 @@ export class PullRequestComponent implements OnInit {
           obsDelete$.subscribe(pr => {
             let index = this.pullRequests.findIndex(el => el.id === value.pr.id);
             this.pullRequests.splice(index,1);
+            this.prTable.renderRows();
           });
           break;
         default:
       }
-      this.prTable.renderRows();
     });
   }
 }

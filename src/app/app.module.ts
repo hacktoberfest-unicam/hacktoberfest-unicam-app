@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProblemComponent } from './problem/problem.component';
 import { UserComponent } from './user/user.component';
 import { PullRequestComponent } from './pull-request/pull-request.component';
-import { EditPullRequestDialogComponent } from './dialogs/edit-pull-request-dialog.component';
+import { PullRequestDialogComponent } from './dialogs/pull-request-dialog.component';
 import { UserDialogComponent } from './dialogs/user-dialog.component';
 
 import { AuthHttpInterceptor, AuthModule } from '@auth0/auth0-angular';
@@ -34,7 +34,7 @@ import { environment } from 'src/environments/environment';
     ProblemComponent,
     UserComponent,
     PullRequestComponent,
-    EditPullRequestDialogComponent,
+    PullRequestDialogComponent,
     UserDialogComponent
   ],
   imports: [

@@ -9,3 +9,12 @@ export interface PullRequest {
     bonusPoints?: number;
     bonusComment?: string;
 }
+
+export interface PullRequestDTO {
+    id: number,
+    problem_id: string,
+    nickname: string,
+    merge_time: Date,
+    bonus_points?: number,
+    bonus_comment?: string,
+}

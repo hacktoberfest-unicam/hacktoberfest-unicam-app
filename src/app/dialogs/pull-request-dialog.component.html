@@ -1,10 +1,10 @@
 <h2 mat-dialog-title>Edit PR n. {{data.id}}</h2>
 <mat-dialog-content>
     <div class="flex-form">
-        <!-- <mat-form-field appearance="fill" id="id" >
+        <mat-form-field appearance="fill" id="id" >
             <mat-label>Id</mat-label>
             <input matNativeControl [formControl]="idControl">
-        </mat-form-field> -->
+        </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
             <input matNativeControl [formControl]="nicknameControl">
@@ -13,10 +13,10 @@
             <mat-label>Problem Id</mat-label>
             <input matNativeControl [formControl]="problemIdControl">
         </mat-form-field>
-        <!-- <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill">
             <mat-label>Merge Time</mat-label>
             <input matNativeControl [formControl]="mergeTimeControl">
-        </mat-form-field> -->
+        </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Bonus Points</mat-label>
             <input matNativeControl [formControl]="bonusPointsControl">
@@ -28,7 +28,14 @@
     </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-flat-button color="primary" (click)="updatePr()">Update</button>
-    <button mat-flat-button color="warn" (click)="deletePr()">Delete</button>
-    <button mat-flat-button (click)="closeDialog()">Cancel</button>
+    <div *ngIf="data.mode === 'edit'; then edit else create"></div>
+    <ng-template #edit>
+        <button mat-flat-button color="primary" (click)="updatePr()">Update</button>
+        <button mat-flat-button color="warn" (click)="deletePr()">Delete</button>
+        <button mat-flat-button (click)="closeDialog()">Cancel</button>
+    </ng-template>
+    <ng-template #create>
+        <button mat-flat-button color="primary" (click)="createPr()">Submit</button>
+        <button mat-flat-button (click)="closeDialog()">Cancel</button>
+    </ng-template>
 </mat-dialog-actions>
