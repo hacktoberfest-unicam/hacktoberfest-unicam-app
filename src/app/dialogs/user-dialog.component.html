@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Edit User: {{data.nickname}}</h2>
-<mat-dialog-content>
+<mat-dialog-content (keydown.enter)="submitUser()">
     <div class="flex-form">
         <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
@@ -18,12 +18,12 @@
 <mat-dialog-actions>
     <ng-template *ngIf="data.mode === 'edit';then edit else new"></ng-template>
     <ng-template #edit>
-        <button mat-flat-button color="primary" (click)="updateUser()">Update</button>
+        <button mat-flat-button color="primary" (click)="submitUser()">Update</button>
         <button mat-flat-button color="warn" (click)="deleteUser()">Delete</button>
         <button mat-flat-button (click)="closeDialog()">Cancel</button>
     </ng-template>
     <ng-template #new>
-        <button mat-flat-button color="primary" (click)="createUser()">Create</button>
+        <button mat-flat-button color="primary" (click)="submitUser()">Create</button>
         <button mat-flat-button (click)="closeDialog()">Cancel</button>
     </ng-template>
     <!-- <button mat-flat-button color="primary" (click)="updatePr()">Update</button> -->

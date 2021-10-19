@@ -25,19 +25,33 @@ export class UserDialogComponent implements OnInit {
       this.nameControl.setValue(this.data.user.name);
       this.surnameControl.setValue(this.data.user.surname);
     }
+    if (this.data.mode === 'edit') {
+      this.nicknameControl.disable();
+    }
   }
 
-  updateUser() {
+  submitUser() {
     let user: User = {
       nickname: this.nicknameControl.value,
       name: this.nameControl.value,
       surname: this.surnameControl.value
     };
     this.dialogRef.close({
-      command: Command.UPDATE,
+      command: this.data.mode === 'edit' ? Command.UPDATE : Command.CREATE,
       user
     });
   }
+  // updateUser() {
+  //   let user: User = {
+  //     nickname: this.nicknameControl.value,
+  //     name: this.nameControl.value,
+  //     surname: this.surnameControl.value
+  //   };
+  //   this.dialogRef.close({
+  //     command: Command.UPDATE,
+  //     user
+  //   });
+  // }
 
   deleteUser() {
     this.dialogRef.close({
@@ -50,17 +64,17 @@ export class UserDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  createUser() {
-    let user: User = {
-      nickname: this.nicknameControl.value,
-      name: this.nameControl.value,
-      surname: this.surnameControl.value
-    };
-    this.dialogRef.close({
-      command: Command.CREATE,
-      user
-    });
+  // createUser() {
+  //   let user: User = {
+  //     nickname: this.nicknameControl.value,
+  //     name: this.nameControl.value,
+  //     surname: this.surnameControl.value
+  //   };
+  //   this.dialogRef.close({
+  //     command: Command.CREATE,
+  //     user
+  //   });
 
-  }
+  // }
 
 }

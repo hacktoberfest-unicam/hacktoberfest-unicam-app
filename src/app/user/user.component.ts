@@ -67,6 +67,7 @@ export class UserComponent implements OnInit {
               let index = this.users.findIndex(el => el.nickname === user.nickname);
               this.users.splice(index, 1);
               this.users.push(user);
+              this.userTable.renderRows();
             });
             break;
           case Command.DELETE:
@@ -74,10 +75,10 @@ export class UserComponent implements OnInit {
             obsDelete$.subscribe(user => {
               let index = this.users.findIndex(el => el.nickname === dialog.user.nickname);
               this.users.splice(index,1);
+              this.userTable.renderRows();
             });
             break;
         }
-        this.userTable.renderRows();
       });
   }
 
