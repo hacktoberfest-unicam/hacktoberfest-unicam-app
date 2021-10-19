@@ -5,13 +5,21 @@
             <mat-label>Id</mat-label>
             <input matNativeControl [formControl]="idControl">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <!-- <mat-form-field appearance="fill">
             <mat-label>Username</mat-label>
             <input matNativeControl [formControl]="nicknameControl">
+        </mat-form-field> -->
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <mat-select matNativeControl [formControl]="nicknameControl">
+                <mat-option *ngFor="let user of users" value="{{user.nickname}}">{{user.nickname}}</mat-option>
+            </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Problem Id</mat-label>
-            <input matNativeControl [formControl]="problemIdControl">
+            <mat-select matNativeControl [formControl]="problemIdControl">
+                <mat-option *ngFor="let problem of problems" value="{{problem.id}}">{{problem.id}}</mat-option>
+            </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label>Merge Time</mat-label>

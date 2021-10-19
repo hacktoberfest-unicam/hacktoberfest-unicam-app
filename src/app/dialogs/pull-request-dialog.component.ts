@@ -1,7 +1,12 @@
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormControl } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { environment } from "src/environments/environment";
+import { Problem } from "../models/problem";
 import { PullRequest } from "../models/pull-request";
+import { User } from "../models/user";
+import { ProblemService } from "../services/problem.service";
+import { UserService } from "../services/user.service";
 import { Command } from "./command.enum";
 
 @Component({
@@ -17,14 +22,27 @@ export class PullRequestDialogComponent implements OnInit{
     public bonusPointsControl = new FormControl(this.data.bonusPoints);
     public bonusCommentControl = new FormControl(this.data.bonusComment);
 
+    public users: User[] = [];
+    public problems: Problem[] = [];
+
     constructor(
         @Inject(MAT_DIALOG_DATA) public data: any,
-        public dialogRef: MatDialogRef<PullRequestDialogComponent>
+        public dialogRef: MatDialogRef<PullRequestDialogComponent>,
+        private userService: UserService,
+        private problemService: ProblemService
         ) {
 
     }
 
     ngOnInit(): void {
+        let user$ = environment.debug ? this.userService.getUsersMOCK() : this.userService.getUsers();
+        user$.subscribe(users => {
+            this.users = users;
+        });
+        let problem$ = environment.debug ? this.problemService.getProblemsMOCK() : this.problemService.getProblems();
+        problem$.subscribe(problems => {
+            this.problems = problems;
+        });
         if (this.data.pr) {
             let pr: PullRequest = this.data.pr;
             this.idControl.setValue(pr.id);

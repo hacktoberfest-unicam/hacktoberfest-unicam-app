@@ -27,6 +27,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ProblemDialogComponent } from './dialogs/problem-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { ProblemDialogComponent } from './dialogs/problem-dialog.component';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     
     AuthModule.forRoot({
       domain: 'hacktoberfest-app.eu.auth0.com',
