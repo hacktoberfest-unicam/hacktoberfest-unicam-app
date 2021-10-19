@@ -39,8 +39,9 @@
         </ng-container>
         <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef>
-                <button mat-icon-button (click)="createPullRequest()">
-                    <mat-icon>add</mat-icon>
+                <button mat-raised-button color="primary" (click)="createPullRequest()">
+                    <!-- <mat-icon>add</mat-icon> -->
+                    Add
                 </button>
             </th>
             <td mat-cell *matCellDef="let element">
