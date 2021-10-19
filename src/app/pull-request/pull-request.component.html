@@ -1,24 +1,24 @@
 <div class="table-area">
-    <table mat-table #prTable [dataSource]="pullRequests" class="mat-elevation-z8">
+    <table mat-table #prTable [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
         <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
             <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
         <ng-container matColumnDef="problemId">
-            <th mat-header-cell *matHeaderCellDef>Problem Id</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Problem Id</th>
             <td mat-cell *matCellDef="let element"> {{element.problemId}} </td>
         </ng-container>
         <ng-container matColumnDef="nickname">
-            <th mat-header-cell *matHeaderCellDef>Username</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
             <td mat-cell *matCellDef="let element"> {{element.nickname}} </td>
         </ng-container>
         <ng-container matColumnDef="mergeTime">
-            <th mat-header-cell *matHeaderCellDef>Merge Time</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Merge Time</th>
             <td mat-cell *matCellDef="let element"> {{element.mergeTime}} </td>
         </ng-container>
         <ng-container matColumnDef="bonusPoints">
-            <th mat-header-cell *matHeaderCellDef>Bonus Points</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Bonus Points</th>
             <td mat-cell *matCellDef="let element"> {{element.bonusPoints}} </td>
         </ng-container>
         <ng-container matColumnDef="bonusComment">
@@ -26,7 +26,7 @@
             <td mat-cell *matCellDef="let element"> {{element.bonusComment}} </td>
         </ng-container>
         <ng-container matColumnDef="reviewed">
-            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
             <td mat-cell *matCellDef="let element">
                 <div *ngIf="element.reviewed == true; then green else red"></div>
                 <ng-template #green>

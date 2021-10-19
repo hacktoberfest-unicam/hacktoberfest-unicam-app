@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { DataSource } from '@angular/cdk/collections';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTable } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
 import { Command } from '../dialogs/command.enum';
 import { PullRequestDialogComponent } from '../dialogs/pull-request-dialog.component';
@@ -14,7 +16,8 @@ import { PullRequestService } from '../services/pull-request.service';
   templateUrl: './pull-request.component.html',
   styleUrls: ['./pull-request.component.scss']
 })
-export class PullRequestComponent implements OnInit {
+export class PullRequestComponent implements OnInit, AfterViewInit {
+  public dataSource: MatTableDataSource<PullRequest> = new MatTableDataSource();
   public pullRequests: PullRequest[] = [];
   public problems: Problem[] = [];
   public users: User[] = [];
@@ -24,6 +27,7 @@ export class PullRequestComponent implements OnInit {
   public displayedColumns = ['id', 'problemId', 'nickname', 'mergeTime', 'bonusPoints', 'bonusComment', 'reviewed','actions'];
 
   @ViewChild('prTable') prTable: MatTable<PullRequest>;
+  @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     private pullRequestService: PullRequestService,
@@ -34,7 +38,17 @@ export class PullRequestComponent implements OnInit {
     let pr$ = environment.debug ? this.pullRequestService.getPullRequestsMOCK() : this.pullRequestService.getPullRequests();
     pr$.subscribe(prs => {
       this.pullRequests = prs;
+      this.updateTable();
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.sort = this.sort;
+  }
+
+  private updateTable(): void {
+    this.dataSource.data = this.pullRequests;
+    this.prTable.renderRows();
   }
 
   public createPullRequest(): void {
@@ -51,7 +65,7 @@ export class PullRequestComponent implements OnInit {
           let obsCreate$ = environment.debug ? this.pullRequestService.createPullRequestMOCK(dialog.pr) : this.pullRequestService.createPullRequest(dialog.pr);
           obsCreate$.subscribe(_ => {
             this.pullRequests.push(dialog.pr);
-            this.prTable.renderRows();
+            this.updateTable();
           });
           break;
         default:
@@ -76,7 +90,7 @@ export class PullRequestComponent implements OnInit {
             let index = this.pullRequests.findIndex(el => el.id === pr.id);
             this.pullRequests.splice(index,1);
             this.pullRequests.push(pr);
-            this.prTable.renderRows();
+            this.updateTable();
           });
           break;
         case Command.DELETE:
@@ -84,7 +98,7 @@ export class PullRequestComponent implements OnInit {
           obsDelete$.subscribe(pr => {
             let index = this.pullRequests.findIndex(el => el.id === value.pr.id);
             this.pullRequests.splice(index,1);
-            this.prTable.renderRows();
+            this.updateTable();
           });
           break;
         default:

@@ -29,6 +29,7 @@ import { environment } from 'src/environments/environment';
 import { ProblemDialogComponent } from './dialogs/problem-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
 import { HomeComponent } from './home/home.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { HomeComponent } from './home/home.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatSortModule,
     
     AuthModule.forRoot({
       domain: 'hacktoberfest-app.eu.auth0.com',
