@@ -8,13 +8,17 @@ export interface PullRequest {
     mergeTime: Date;
     bonusPoints?: number;
     bonusComment?: string;
+    reviewed?: boolean;
+    reviewedAt?: Date;
 }
 
 export interface PullRequestDTO {
-    id: number,
-    problem_id: string,
-    nickname: string,
-    merge_time: Date,
-    bonus_points?: number,
-    bonus_comment?: string,
+    id: number;
+    problem_id: string;
+    nickname: string;
+    merge_time: Date;
+    bonus_points?: number;
+    bonus_comment?: string;
+    reviewed?: boolean;
+    reviewed_at?: Date;
 }

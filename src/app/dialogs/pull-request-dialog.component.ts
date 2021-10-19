@@ -48,6 +48,8 @@ export class PullRequestDialogComponent implements OnInit{
             mergeTime: new Date(),
             bonusPoints: this.bonusPointsControl.value,
             bonusComment: this.bonusCommentControl.value,
+            reviewed: true,
+            reviewedAt: new Date()
         };
         this.dialogRef.close({
             command: Command.CREATE,
@@ -74,6 +76,8 @@ export class PullRequestDialogComponent implements OnInit{
             mergeTime: this.mergeTimeControl.value,
             bonusPoints: this.bonusPointsControl.value,
             bonusComment: this.bonusCommentControl.value,
+            reviewed: true,
+            reviewedAt: new Date()
         };
         this.dialogRef.close({
             command: Command.UPDATE,

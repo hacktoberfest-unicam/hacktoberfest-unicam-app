@@ -13,24 +13,28 @@ import { AuthService } from '@auth0/auth0-angular';
 export class PullRequestService {
   private url = `${environment.baseUrl}/pr`;
 
-  private mapPrFromDTO = (dto: PullRequestDTO): PullRequest => {
+  private mapFromDTO = (dto: PullRequestDTO): PullRequest => {
     return {
       id: dto.id,
       problemId: dto.problem_id,
       nickname: dto.nickname,
       mergeTime: dto.merge_time,
       bonusPoints: dto.bonus_points,
-      bonusComment: dto.bonus_comment
+      bonusComment: dto.bonus_comment,
+      reviewed: dto.reviewed,
+      reviewedAt: dto.reviewed_at
     }
   }
-  private mapDTOFromPR = (pr: PullRequest): PullRequestDTO => {
+  private mapToDTO = (pr: PullRequest): PullRequestDTO => {
     return {
       id: pr.id,
       problem_id: pr.problemId,
       nickname: pr.nickname,
       merge_time: pr.mergeTime,
       bonus_points: pr.bonusPoints,
-      bonus_comment: pr.bonusComment
+      bonus_comment: pr.bonusComment,
+      reviewed: pr.reviewed,
+      reviewed_at: pr.reviewedAt
     }
   }
 
@@ -42,7 +46,7 @@ export class PullRequestService {
 
   public getPullRequests(): Observable<PullRequest[]> {
     return this.http.get<PullRequestDTO[]>(this.url).pipe(
-      map(dto => dto.map(this.mapPrFromDTO))
+      map(dto => dto.map(this.mapFromDTO))
     );
   }
 
@@ -51,8 +55,8 @@ export class PullRequestService {
   }
 
   public updatePullRequest(pr: PullRequest): Observable<PullRequest> {
-    return this.http.put<PullRequestDTO>(`${this.url}/${pr.id}`, this.mapDTOFromPR(pr)).pipe(
-      map(dto => this.mapPrFromDTO(dto))
+    return this.http.put<PullRequestDTO>(`${this.url}/${pr.id}`, this.mapToDTO(pr)).pipe(
+      map(dto => this.mapFromDTO(dto))
     );
   }
 
@@ -62,7 +66,7 @@ export class PullRequestService {
 
   public deletePullRequest(pr: PullRequest): Observable<PullRequest>{
     return this.http.delete<PullRequestDTO>(`${this.url}/${pr.id}`).pipe(
-      map(dto => this.mapPrFromDTO(dto))
+      map(dto => this.mapFromDTO(dto))
     );
   }
 
@@ -71,7 +75,7 @@ export class PullRequestService {
   }
 
   public createPullRequest(pr: PullRequest): Observable<unknown> {
-    return this.http.post<void>(this.url, this.mapDTOFromPR(pr));
+    return this.http.post<unknown>(this.url, this.mapToDTO(pr));
   }
 
   public createPullRequestMOCK(pr: PullRequest): Observable<unknown> {

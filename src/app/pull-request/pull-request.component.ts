@@ -21,7 +21,7 @@ export class PullRequestComponent implements OnInit {
 
   public expandedElement: string = '';
 
-  public displayedColumns = ['id', 'problemId', 'nickname', 'mergeTime', 'bonusPoints', 'bonusComment','actions'];
+  public displayedColumns = ['id', 'problemId', 'nickname', 'mergeTime', 'bonusPoints', 'bonusComment', 'reviewed','actions'];
 
   @ViewChild('prTable') prTable: MatTable<PullRequest>;
 
