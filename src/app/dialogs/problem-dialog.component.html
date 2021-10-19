@@ -1,0 +1,42 @@
+<h2 mat-dialog-title>Edit Problem: {{data.id}}</h2>
+<mat-dialog-content>
+    <div class="flex-form">
+        <mat-form-field appearance="fill">
+            <mat-label>Problem Id</mat-label>
+            <input matNativeControl [formControl]="idControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matNativeControl [formControl]="nameControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Level Name</mat-label>
+            <input matNativeControl [formControl]="levelNameControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Points</mat-label>
+            <input matNativeControl [formControl]="basePointsControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Multiplier</mat-label>
+            <input matNativeControl [formControl]="multiplierControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matNativeControl [formControl]="descriptionControl">
+            </textarea>
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <ng-template *ngIf="data.mode === 'edit';then edit else new"></ng-template>
+    <ng-template #edit>
+        <button mat-flat-button color="primary" (click)="updateProblem()">Update</button>
+        <button mat-flat-button color="warn" (click)="deleteProblem()">Delete</button>
+        <button mat-flat-button (click)="closeDialog()">Cancel</button>
+    </ng-template>
+    <ng-template #new>
+        <button mat-flat-button color="primary" (click)="createProblem()">Create</button>
+        <button mat-flat-button (click)="closeDialog()">Cancel</button>
+    </ng-template>
+</mat-dialog-actions>

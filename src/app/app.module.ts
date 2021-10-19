@@ -26,6 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
+import { ProblemDialogComponent } from './dialogs/problem-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { environment } from 'src/environments/environment';
     UserComponent,
     PullRequestComponent,
     PullRequestDialogComponent,
-    UserDialogComponent
+    UserDialogComponent,
+    ProblemDialogComponent
   ],
   imports: [
     BrowserModule,
