@@ -2,7 +2,9 @@
     <table mat-table #userTable [dataSource]="users" class="mat-elevation-z8">
         <ng-container matColumnDef="nickname">
             <th mat-header-cell *matHeaderCellDef>Username</th>
-            <td mat-cell *matCellDef="let element"> {{element.nickname}} </td>
+            <td mat-cell *matCellDef="let element">
+                <a href="https://github.com/{{element.nickname}}" target="_blank">{{element.nickname}}</a>
+            </td>
         </ng-container>
         <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef>Name</th>
