@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
 import { Command } from '../dialogs/command.enum';
 import { UserDialogComponent } from '../dialogs/user-dialog.component';
@@ -15,6 +15,8 @@ import { UserService } from '../services/user.service';
 export class UserComponent implements OnInit {
   public users: User[];
   public displayedColumns = ['nickname','name','surname','actions'];
+
+  public dataSource: MatTableDataSource<User> = new MatTableDataSource();
   @ViewChild('userTable') userTable: MatTable<User>;
 
   constructor(
@@ -26,7 +28,13 @@ export class UserComponent implements OnInit {
     let user$ = environment.debug ? this.userService.getUsersMOCK() : this.userService.getUsers();
     user$.subscribe(users => {
       this.users = users;
+      this.updateTable();
     });
+  }
+
+  private updateTable(): void {
+    this.dataSource.data = this.users;
+    this.userTable.renderRows();
   }
 
   createUser() {
@@ -44,7 +52,7 @@ export class UserComponent implements OnInit {
         obsCreate$.subscribe(val => {
           console.log(dialog.user);
           this.users.push(dialog.user);
-          this.userTable.renderRows();
+          this.updateTable();
         });
       }
     });
@@ -67,7 +75,7 @@ export class UserComponent implements OnInit {
               let index = this.users.findIndex(el => el.nickname === user.nickname);
               this.users.splice(index, 1);
               this.users.push(user);
-              this.userTable.renderRows();
+              this.updateTable();
             });
             break;
           case Command.DELETE:
@@ -75,7 +83,7 @@ export class UserComponent implements OnInit {
             obsDelete$.subscribe(user => {
               let index = this.users.findIndex(el => el.nickname === dialog.user.nickname);
               this.users.splice(index,1);
-              this.userTable.renderRows();
+              this.updateTable();
             });
             break;
         }
