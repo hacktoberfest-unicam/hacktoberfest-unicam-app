@@ -9,7 +9,7 @@ import { Problem, ProblemDTO } from '../models/problem';
   providedIn: 'root'
 })
 export class ProblemService {
-  private url = `${environment.baseUrl}/problem`;
+  private url = `${environment.baseUrl}/api/problem`;
 
   private mapFromDTO = (dto: ProblemDTO): Problem => {
     return {

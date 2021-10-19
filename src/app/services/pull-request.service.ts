@@ -11,7 +11,7 @@ import { AuthService } from '@auth0/auth0-angular';
   providedIn: 'root'
 })
 export class PullRequestService {
-  private url = `${environment.baseUrl}/pr`;
+  private url = `${environment.baseUrl}/api/pr`;
 
   private mapFromDTO = (dto: PullRequestDTO): PullRequest => {
     return {

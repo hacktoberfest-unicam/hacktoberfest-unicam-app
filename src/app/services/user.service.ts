@@ -9,7 +9,7 @@ import { USER_MOCK } from './user.mock';
   providedIn: 'root'
 })
 export class UserService {
-  private url = `${environment.baseUrl}/user`;
+  private url = `${environment.baseUrl}/api/user`;
 
   constructor(
     private http: HttpClient

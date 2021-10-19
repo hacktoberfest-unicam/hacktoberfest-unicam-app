@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   debug: false,
-  baseUrl: 'https://hacktoberfest-unicam-gateway.herokuapp.com/api'
+  baseUrl: 'https://hacktoberfest-unicam-gateway.herokuapp.com'
 };
 
 /*
