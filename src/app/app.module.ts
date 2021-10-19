@@ -73,7 +73,7 @@ import { MatSortModule } from '@angular/material/sort';
       httpInterceptor: {
         allowedList: [
           {
-            uri: `${environment.baseUrl}/*`,
+            uri: `${environment.baseUrl}/api/*`,
             tokenOptions: {
               audience: 'hacktoberfest-api',
               // scope: 'read:current_user'
