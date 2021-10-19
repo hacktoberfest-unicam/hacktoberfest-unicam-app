@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { environment } from 'src/environments/environment';
@@ -17,7 +18,10 @@ export class UserComponent implements OnInit {
   public displayedColumns = ['nickname','name','surname','actions'];
 
   public dataSource: MatTableDataSource<User> = new MatTableDataSource();
+
   @ViewChild('userTable') userTable: MatTable<User>;
+
+  public filterControl = new FormControl();
 
   constructor(
     private userService: UserService,
@@ -30,6 +34,11 @@ export class UserComponent implements OnInit {
       this.users = users;
       this.updateTable();
     });
+  }
+
+  public applyFilter(): void {
+    const filter: string = this.filterControl.value;
+    this.dataSource.filter = filter.trim().toLowerCase();
   }
 
   private updateTable(): void {

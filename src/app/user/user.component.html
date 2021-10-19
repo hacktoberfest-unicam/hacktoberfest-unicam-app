@@ -1,4 +1,8 @@
 <div class="table-area">
+    <mat-form-field class="filter" appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter()" placeholder="username" [formControl]="filterControl" #filter>
+    </mat-form-field>`
     <table mat-table #userTable [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="nickname">
             <th mat-header-cell *matHeaderCellDef>Username</th>
@@ -31,5 +35,9 @@
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="displayedColumns.length()">No data matching the filter "{{filter.value}}"</td>
+        </tr>
     </table>
 </div>
