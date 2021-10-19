@@ -28,6 +28,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { ProblemDialogComponent } from './dialogs/problem-dialog.component';
 import { MatSelectModule } from '@angular/material/select';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatSelectModule } from '@angular/material/select';
     PullRequestComponent,
     PullRequestDialogComponent,
     UserDialogComponent,
-    ProblemDialogComponent
+    ProblemDialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

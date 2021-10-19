@@ -10,8 +10,35 @@ import { AuthService } from '@auth0/auth0-angular';
 export class AppComponent {
   title = 'hacktoberfest-app';
 
-  links = ['user','problem','pull-request', 'dashboard'];
-  activeLink = 'user';
+  // links = ['user','problem','pull-request', 'dashboard'];
+  links = [
+    {
+      name: 'Home',
+      route: 'home',
+      icon: 'home'
+    },
+    {
+      name: 'Dashboard',
+      route: 'dashboard',
+      icon: 'dashboard'
+    },
+    {
+      name: 'Users',
+      route: 'user',
+      icon: 'account_circle'
+    },
+    {
+      name: 'Problems',
+      route: 'problem',
+      icon: 'description'
+    },
+    {
+      name: 'Pull Requests',
+      route: 'pull-request',
+      icon: 'assignment'
+    },
+  ]
+  activeLink = 'home';
 
   isSidenavOpened = false;
 
