@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   debug: false,
-  baseUrl: 'http://49.12.237.253:8080/api'
+  baseUrl: 'https://hacktoberfest-unicam-gateway.herokuapp.com/api'
 };
 
 /*
