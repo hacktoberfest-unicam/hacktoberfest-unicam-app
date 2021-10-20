@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -22,6 +22,8 @@ export class PullRequestComponent implements OnInit, AfterViewInit {
   public problems: Problem[] = [];
   public users: User[] = [];
 
+  @Input() filterDone: boolean = false;
+
   public expandedElement: string = '';
 
   public displayedColumns = ['id', 'problemId', 'nickname', 'mergeTime', 'bonusPoints', 'bonusComment', 'reviewed','actions'];
@@ -32,7 +34,7 @@ export class PullRequestComponent implements OnInit, AfterViewInit {
   constructor(
     private pullRequestService: PullRequestService,
     private dialog: MatDialog
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     let pr$ = environment.debug ? this.pullRequestService.getPullRequestsMOCK() : this.pullRequestService.getPullRequests();
@@ -48,6 +50,10 @@ export class PullRequestComponent implements OnInit, AfterViewInit {
 
   private updateTable(): void {
     this.dataSource.data = this.pullRequests;
+      console.log(this.filterDone);
+    if (this.filterDone) {
+      this.dataSource.data = this.dataSource.data.filter(el => !el.reviewed);
+    }
     this.prTable.renderRows();
   }
 
