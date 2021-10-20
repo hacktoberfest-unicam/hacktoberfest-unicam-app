@@ -26,6 +26,8 @@ export class PullRequestComponent implements OnInit, AfterViewInit {
 
   public expandedElement: string = '';
 
+  public repoUrl = environment.repoUrl;
+
   public displayedColumns = ['id', 'problemId', 'nickname', 'mergeTime', 'bonusPoints', 'bonusComment', 'reviewed','actions'];
 
   @ViewChild('prTable') prTable: MatTable<PullRequest>;

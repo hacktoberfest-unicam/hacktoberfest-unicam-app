@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   debug: false,
-  baseUrl: 'https://hacktoberfest-unicam-gateway.herokuapp.com'
+  baseUrl: 'https://hacktoberfest-unicam-gateway.herokuapp.com',
+  repoUrl: 'https://github.com/hacktoberfest-unicam/awesome-hacktoberfest-reloaded'
 };
 
 /*
