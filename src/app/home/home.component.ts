@@ -14,6 +14,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   public dataSource: MatTableDataSource<RankRow> = new MatTableDataSource();
 
   public displayedColumns = ['points','name', 'surname','nickname'];
+  public displayedColumnsMobile = ['points','nickname'];
+
+  public mobileView: boolean = false;
 
   private sub: Subscription;
 
@@ -23,7 +26,23 @@ export class HomeComponent implements OnInit, OnDestroy {
     private rankService: RankService
   ) { }
 
+  onResize(event: any) {
+    let width = event.target.innerWidth;
+    this.checkMobile(width);
+  }
+
+  checkMobile(width: number) {
+    if (width < 792) {
+      console.log("mobile");
+      this.mobileView = true;
+    } else {
+      console.log("desktop");
+      this.mobileView = false;
+    }
+  }
+
   ngOnInit(): void {
+    this.checkMobile(window.innerWidth);
     this.sub = timer(0, 10000).subscribe(_ => {
       this.rankService.getRankRows().subscribe(rankRows => {
         this.rankRows = rankRows;
