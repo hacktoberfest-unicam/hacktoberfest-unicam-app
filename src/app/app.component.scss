@@ -34,10 +34,19 @@ main {
     display: block;
   }
 }
-// .footer {
-//     position: fixed;
-//     bottom: 0px;
-// }
+.contributor-link {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.footer {
+  // margin:auto;
+  // text-align: center;
+  // display: flex;
+  // flex-direction: column;
+  font-size: 12px;
+}
 // button.sidenav-opener {
 
 // }
