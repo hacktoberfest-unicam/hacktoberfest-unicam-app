@@ -1,4 +1,8 @@
-# HacktoberfestApp
+# Hacktoberfest-Unicam-App
+
+Questa applicazione è stata utilizzata per gestire l'hackathon durante l'evento dell'Hacktoberfest in Unicam, offrendo una classifica in tempo reale e permettendo ai maintainer di salvare le submissions fatte dai partecipanti.
+
+# - Generated with Angular CLI -
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
 
