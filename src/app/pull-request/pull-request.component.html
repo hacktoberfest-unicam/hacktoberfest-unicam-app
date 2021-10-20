@@ -1,4 +1,8 @@
 <div class="table-area">
+    <mat-form-field class="filter" appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter()" [formControl]="filterControl" #filter>
+    </mat-form-field>
     <table mat-table #prTable [dataSource]="dataSource" class="mat-elevation-z8" matSort>
 
         <ng-container matColumnDef="id">

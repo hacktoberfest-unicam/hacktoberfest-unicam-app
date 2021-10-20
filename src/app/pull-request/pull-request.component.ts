@@ -1,5 +1,6 @@
 import { DataSource } from '@angular/cdk/collections';
 import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -33,6 +34,8 @@ export class PullRequestComponent implements OnInit, AfterViewInit {
   @ViewChild('prTable') prTable: MatTable<PullRequest>;
   @ViewChild(MatSort) sort: MatSort;
 
+  public filterControl = new FormControl();
+
   constructor(
     private pullRequestService: PullRequestService,
     private dialog: MatDialog
@@ -44,6 +47,11 @@ export class PullRequestComponent implements OnInit, AfterViewInit {
       this.pullRequests = prs;
       this.updateTable();
     });
+  }
+
+  applyFilter(): void {
+    const filter: string = this.filterControl.value;
+    this.dataSource.filter = filter.trim().toLowerCase();
   }
 
   ngAfterViewInit(): void {
