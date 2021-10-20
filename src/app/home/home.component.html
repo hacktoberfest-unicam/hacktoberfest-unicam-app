@@ -2,7 +2,7 @@
     <table mat-table #rankTable [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="points">
             <th mat-header-cell *matHeaderCellDef>Points</th>
-            <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.points.toFixed(1)}} </td>
         </ng-container>
         <ng-container matColumnDef="nickname">
             <th mat-header-cell *matHeaderCellDef>Username</th>
